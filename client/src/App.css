@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.front-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+}
+
+.front-page-button-wrapper {
+  margin: 200px 0 auto 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.front-page-button-wrapper > .button {
+  margin: auto;
+  height: 100px;
+  width: 200px;
+  font-size: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+}

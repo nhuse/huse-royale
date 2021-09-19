@@ -1,29 +1,39 @@
-// client/src/components/App.js
+import './App.css'
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Login from './components/Login'
+import Signup from './components/Signup';
+import GameRoom from './components/GameRoom'
+import FrontPage from './components/FrontPage'
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+    fetch('/me').then((r) => {
+      if(r.ok){
+        r.json().then((user) => {
+          setUser(user)
+        })
+      }
+    })
+  }, [])
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <Switch>
+      <Route path='/login' >
+        <Login />
+      </Route>
+      <Route path='/signup' >
+        <Signup />
+      </Route>
+      <Route path='/game-room'>
+        <GameRoom user={user} />
+      </Route>
+      <Route exact path='/' render={() => (
+        user ? <Redirect to='/game-room' /> : <FrontPage />
+      )}/>
+    </Switch>
   );
 }
 
