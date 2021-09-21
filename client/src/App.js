@@ -8,12 +8,14 @@ import FrontPage from './components/FrontPage'
 
 function App() {
   const [user, setUser] = useState(null)
+  const [chips, setChips] = useState(null)
 
   useEffect(() => {
     fetch('/me').then((r) => {
       if(r.ok){
         r.json().then((user) => {
           setUser(user)
+          setChips(user.chips)
         })
       }
     })
@@ -22,13 +24,13 @@ function App() {
   return (
     <Switch>
       <Route path='/login' >
-        <Login />
+        <Login setUser={setUser} setChips={setChips} />
       </Route>
       <Route path='/signup' >
-        <Signup />
+        <Signup setUser={setUser} setChips={setChips} />
       </Route>
       <Route path='/game-room'>
-        <GameRoom user={user} />
+        <GameRoom user={user} setUser={setUser} chips={chips} />
       </Route>
       <Route exact path='/' render={() => (
         user ? <Redirect to='/game-room' /> : <FrontPage />

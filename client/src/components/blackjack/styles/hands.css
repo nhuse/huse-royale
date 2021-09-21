@@ -1,0 +1,37 @@
+.black-jack {
+    display: inline-block;
+    width: 98vw;
+    height: 94vh;
+}
+
+.player-cards {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.dealer-cards {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.black-jack-aside {
+    float: left;
+    width: 200px;
+    height: 94vh;
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+}
+
+.action-btn {
+    border-radius: 15px;
+    height: 50px;
+    width: 200px;
+    font-size: 30px;
+}

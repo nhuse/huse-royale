@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post '/users/:id', to: 'users#update'
 
   post '/signin', to: 'sessions#create'
-  delete '/signout', to: 'sessoins#destroy'
+  delete '/signout', to: 'sessions#destroy'
  
   resources :games, only: [:index]
 
