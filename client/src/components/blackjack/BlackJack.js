@@ -98,7 +98,7 @@ export default function BlackJack({ user, chips, setChips }) {
     useEffect(() => {
         if(playerPoints > 21) {
             setGameOver(true)
-            setOutcome("That's a bust! Good Game! Would you like to play again?")
+            setOutcome("That's a bust!")
         }
     }, [playerPoints])
     
@@ -115,7 +115,7 @@ export default function BlackJack({ user, chips, setChips }) {
         setBetting(true)
     }
     function handleQuitClick() {
-        history.push('/game-room')
+        history.push('/game_room')
     }
     function handleHitClick(){
         setPlayerHand([...playerHand,
@@ -167,7 +167,7 @@ export default function BlackJack({ user, chips, setChips }) {
             ) {
                 setBlackJack(true)
                 setChips(prev => prev + currentBet)
-                setOutcome("Both you and the dealer got a blackjack. It's a push. Play again?")
+                setOutcome("Both you and the dealer got a blackjack. It's a push.")
             }
             if(
             (playerHand[0].value === 11 && (playerHand[1].value === 10)) || 
@@ -175,14 +175,14 @@ export default function BlackJack({ user, chips, setChips }) {
             ) {
                 setBlackJack(true)
                 setChips(prev => prev + currentBet + (currentBet * 1.5))
-                setOutcome('Congrats! You got a blackjack! You win! Play again?')
+                setOutcome('Congrats! You got a blackjack! You win!')
             }
             if(
             (dealerHand[0].value === 11 && (dealerHand[1].value === 10)) || 
             (dealerHand[0].value === 10 && (dealerHand[1].value === 11))
             ) {
                 setBlackJack(true)
-                setOutcome('The dealer got a blackjack. You lose. Play again?')
+                setOutcome('The dealer got a blackjack. You lose.')
             }
             setIsInitialDraw(false)
         }
@@ -191,18 +191,18 @@ export default function BlackJack({ user, chips, setChips }) {
     useEffect(() => {
         if(gameOver){
             if(playerPoints > 21) {
-                setOutcome("That's a bust! You lose! Would you like to play again?")
+                setOutcome("That's a bust! You lose!")
             }else if(dealerPoints > 21) {
                 setChips(prev => prev + (currentBet * 2))
-                setOutcome('Dealer Busts! You win! Play again?')
+                setOutcome('Dealer Busts! You win!')
             }else if(dealerPoints>playerPoints) {
-                setOutcome('The dealer has more points. You lose. Play again?')
+                setOutcome('The dealer has more points. You lose.')
             }else if(dealerPoints === playerPoints) {
                 setChips(prev => prev + currentBet)
-                setOutcome("That's a push. Play again?")
+                setOutcome("That's a push.")
             }else if(dealerPoints < playerPoints) {
                 setChips(prev => prev + (currentBet * 2))
-                setOutcome('You beat the dealer! Play again?')
+                setOutcome('You beat the dealer!')
             }
         }
     }, [gameOver])

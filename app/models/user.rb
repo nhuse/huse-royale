@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :win_loss_histories
-    has_many :games, through: :win_loss_histories
+    has_many :comments
+    has_many :games, through: :comments
 
     validates :first_name, presence: true
     validates :last_name, presence: true

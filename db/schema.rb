@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_065037) do
 
   create_table "games", force: :cascade do |t|
     t.string "name"
+    t.string "img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_065037) do
   create_table "win_loss_histories", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "game_id", null: false
-    t.integer "totalLG"
+    t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_win_loss_histories_on_game_id"
