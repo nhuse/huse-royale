@@ -2,19 +2,67 @@ import './styles/hands.css'
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import Cards from './Cards';
-import { CardValues } from './helpers/CardValues'
 import { CardsImages } from './helpers/CardsImage'
+import { useFetchChips } from '../hooks/useFetchChips';
 
-export default function BlackJack({ user, chips }) {
+export default function BlackJack({ user, chips, setChips }) {
     const history = useHistory()
+    console.log(user)
+    const gameId=1;
+    //Make cards objects(eg: 1: {name: "Two of Spades", value: 2})
     const deck = [
-        'Two of Spades', 'Two of Clubs', 'Two of Hearts', 'Two of Diamonds', 'Three of Spades', 'Three of Clubs', 'Three of Hearts', 'Three of Diamonds', 
-        'Four of Spades', 'Four of Clubs', 'Four of Hearts', 'Four of Diamonds', 'Five of Spades', 'Five of Clubs', 'Five of Hearts', 'Five of Diamonds', 
-        'Six of Spades', 'Six of Clubs', 'Six of Hearts', 'Six of Diamonds', 'Seven of Spades', 'Seven of Clubs', 'Seven of Hearts', 'Seven of Diamonds',
-        'Eight of Spades', 'Eight of Clubs', 'Eight of Hearts', 'Eight of Diamonds', 'Nine of Spades', 'Nine of Clubs', 'Nine of Hearts', 'Nine of Diamonds', 
-        'Ten of Spades', 'Ten of Clubs', 'Ten of Hearts', 'Ten of Diamonds', 'Jack of Spades', 'Jack of Clubs', 'Jack of Hearts', 'Jack of Diamonds', 
-        'Queen of Spades', 'Queen of Clubs', 'Queen of Hearts', 'Queen of Diamonds', 'King of Spades', 'King of Clubs', 'King of Hearts', 'King of Diamonds', 
-        'Ace of Spades', 'Ace of Clubs', 'Ace of Hearts', 'Ace of Diamonds'
+        {name: 'Two of Spades', value: 2},
+        {name: 'Two of Clubs', value: 2},
+        {name: 'Two of Hearts', value: 2},
+        {name: 'Two of Diamonds', value: 2},
+        {name: 'Three of Spades', value: 3},
+        {name: 'Three of Clubs', value: 3},
+        {name: 'Three of Hearts', value: 3},
+        {name: 'Three of Diamonds', value: 3},
+        {name: 'Four of Spades', value: 4},
+        {name: 'Four of Clubs', value: 4},
+        {name: 'Four of Hearts', value: 4},
+        {name: 'Four of Diamonds', value: 4},
+        {name: 'Five of Spades', value: 5},
+        {name: 'Five of Clubs', value: 5},
+        {name: 'Five of Hearts', value: 5},
+        {name: 'Five of Hearts', value: 5},
+        {name: 'Six of Spades', value: 6},
+        {name: 'Six of Clubs', value: 6},
+        {name: 'Six of Hearts', value: 6},
+        {name: 'Six of Diamonds', value: 6},
+        {name: 'Seven of Spades', value: 7},
+        {name: 'Seven of Clubs', value: 7},
+        {name: 'Seven of Hearts', value: 7},
+        {name: 'Seven of Diamonds', value: 7},
+        {name: 'Eight of Spades', value: 8},
+        {name: 'Eight of Clubs', value: 8},
+        {name: 'Eight of Hearts', value: 8},
+        {name: 'Eight of Diamonds', value: 8},
+        {name: 'Nine of Spades', value: 9},
+        {name: 'Nine of Clubs', value: 9},
+        {name: 'Nine of Hearts', value: 9},
+        {name: 'Nine of Diamonds', value: 9},
+        {name: 'Ten of Spades', value: 10},
+        {name: 'Ten of Clubs', value: 10},
+        {name: 'Ten of Hearts', value: 10},
+        {name: 'Ten of Diamonds', value: 10},
+        {name: 'Jack of Spades', value: 10},
+        {name: 'Jack of Clubs', value: 10},
+        {name: 'Jack of Hearts', value: 10},
+        {name: 'Jack of Hearts', value: 10},
+        {name: 'Queen of Spades', value: 10},
+        {name: 'Queen of Clubs', value: 10},
+        {name: 'Queen of Hearts', value: 10},
+        {name: 'Queen of Diamonds', value: 10},
+        {name: 'King of Spades', value: 10},
+        {name: 'King of Clubs', value: 10},
+        {name: 'King of Hearts', value: 10},
+        {name: 'King of Hearts', value: 10},
+        {name: 'Ace of Spades', value: 11},
+        {name: 'Ace of Clubs', value: 11},
+        {name: 'Ace of Hearts', value: 11},
+        {name: 'Ace of Diamonds', value: 11},
     ]
     const [blackJack, setBlackJack] = useState(false)
     const [playerHand, setPlayerHand] = useState([])
@@ -27,8 +75,7 @@ export default function BlackJack({ user, chips }) {
     const [dealerTurn, setDealerTurn] = useState(false)
     const [isInitialDraw, setIsInitialDraw] = useState(true)
     const [outCome, setOutcome] = useState('')
-    console.log(dealerHand)
-    console.log('main', dealerPoints)
+
     function handleBetClick(amount) {
         if((currentBet+amount) > chips){
             alert('Not enough money')
@@ -42,6 +89,7 @@ export default function BlackJack({ user, chips }) {
     function handleLockIn() {
         if(currentBet > 0){
             setBetting(false)
+            setChips(prev => prev - currentBet)
             initialDraw()
         }else {
             alert("Please Set your Bet greater than $0")
@@ -53,14 +101,6 @@ export default function BlackJack({ user, chips }) {
             setOutcome("That's a bust! Good Game! Would you like to play again?")
         }
     }, [playerPoints])
-
-    useEffect(() => {
-        setPlayerPoints(CardValues(playerHand))
-    }, [playerHand])
-        
-    useEffect(() => {
-        setDealerPoints(CardValues(dealerHand))
-    }, [dealerHand])
     
     function handleRestartClick() {
         setBlackJack(false)
@@ -79,7 +119,7 @@ export default function BlackJack({ user, chips }) {
     }
     function handleHitClick(){
         setPlayerHand([...playerHand,
-            DrawCard(deck)]
+            PlayerDrawCard(deck)]
         )
     }
     function handleHoldClick() {
@@ -88,42 +128,58 @@ export default function BlackJack({ user, chips }) {
         
     function initialDraw() {
         setPlayerHand([...playerHand,
-            DrawCard(deck),
-            DrawCard(deck)]
+            PlayerDrawCard(deck),
+            PlayerDrawCard(deck)]
         )
         setDealerHand([...dealerHand,
-            DrawCard(deck),
-            DrawCard(deck)]
+            DealerDrawCard(deck),
+            DealerDrawCard(deck)]
         )
     }
 
-    function DrawCard(deck) {
+    function PlayerDrawCard(deck) {
         let copyOfDeck = [...deck]
         let newCard = copyOfDeck[Math.floor(Math.random() * (copyOfDeck.length))]
+        if(newCard.value === 11 && (playerPoints + newCard.value) > 21) {
+            setPlayerPoints(prev => prev + 1)
+        } else {
+            setPlayerPoints(prev => prev + newCard.value)
+        }
         return newCard
     }
-    
+    function DealerDrawCard(deck) {
+        let copyOfDeck = [...deck]
+        let newCard = copyOfDeck[Math.floor(Math.random() * (copyOfDeck.length))]
+        if(newCard.value === 11 && (dealerPoints + newCard.value) > 21) {
+            setDealerPoints(prev => prev + 1)
+        } else {
+            setDealerPoints(prev => prev + newCard.value)
+        }
+        return newCard
+    }
     useEffect(() => {
         if(isInitialDraw === true && dealerHand.length > 0 && playerHand.length > 0){
             if(
-            (playerHand[0].includes('Ace') && (playerHand[1].includes('King') || playerHand[1].includes('Queen') || playerHand[1].includes('Jack')) ) || 
-            (playerHand[1].includes('Ace') && (playerHand[0].includes('King') || playerHand[0].includes('Queen') || playerHand[0].includes('Jack')) ) && 
-            (dealerHand[0].includes('Ace') && (dealerHand[1].includes('King') || dealerHand[1].includes('Queen') || dealerHand[1].includes('Jack')) ) || 
-            (dealerHand[1].includes('Ace') && (dealerHand[0].includes('King') || dealerHand[0].includes('Queen') || dealerHand[0].includes('Jack')))
+            (playerHand[0].value === 11 && (playerHand[1].value === 10)) || 
+            (playerHand[0].value === 10 && (playerHand[1].value === 11)) && 
+            (dealerHand[0].value === 11 && (dealerHand[1].value === 10)) || 
+            (dealerHand[0].value === 10 && (dealerHand[1].value === 11))
             ) {
                 setBlackJack(true)
+                setChips(prev => prev + currentBet)
                 setOutcome("Both you and the dealer got a blackjack. It's a push. Play again?")
             }
             if(
-            (playerHand[0].includes('Ace') && (playerHand[1].includes('King') || playerHand[1].includes('Queen') || playerHand[1].includes('Jack')) ) || 
-            (playerHand[1].includes('Ace') && (playerHand[0].includes('King') || playerHand[0].includes('Queen') || playerHand[0].includes('Jack')) )
+            (playerHand[0].value === 11 && (playerHand[1].value === 10)) || 
+            (playerHand[0].value === 10 && (playerHand[1].value === 11))
             ) {
                 setBlackJack(true)
+                setChips(prev => prev + currentBet + (currentBet * 1.5))
                 setOutcome('Congrats! You got a blackjack! You win! Play again?')
             }
             if(
-            (dealerHand[0].includes('Ace') && (dealerHand[1].includes('King') || dealerHand[1].includes('Queen') || dealerHand[1].includes('Jack')) ) || 
-            (dealerHand[1].includes('Ace') && (dealerHand[0].includes('King') || dealerHand[0].includes('Queen') || dealerHand[0].includes('Jack')))
+            (dealerHand[0].value === 11 && (dealerHand[1].value === 10)) || 
+            (dealerHand[0].value === 10 && (dealerHand[1].value === 11))
             ) {
                 setBlackJack(true)
                 setOutcome('The dealer got a blackjack. You lose. Play again?')
@@ -133,39 +189,39 @@ export default function BlackJack({ user, chips }) {
     }, [playerHand, dealerHand])
 
     useEffect(() => {
-        if(gameOver && !blackJack){
+        if(gameOver){
             if(playerPoints > 21) {
                 setOutcome("That's a bust! You lose! Would you like to play again?")
             }else if(dealerPoints > 21) {
+                setChips(prev => prev + (currentBet * 2))
                 setOutcome('Dealer Busts! You win! Play again?')
             }else if(dealerPoints>playerPoints) {
-                setOutcome('You lost. Play again?')
+                setOutcome('The dealer has more points. You lose. Play again?')
             }else if(dealerPoints === playerPoints) {
+                setChips(prev => prev + currentBet)
                 setOutcome("That's a push. Play again?")
             }else if(dealerPoints < playerPoints) {
-                setOutcome('You win! Play again?')
+                setChips(prev => prev + (currentBet * 2))
+                setOutcome('You beat the dealer! Play again?')
             }
         }
     }, [gameOver])
 
     useEffect(() => {
-            console.log('dealer points', dealerPoints)
-            if(dealerTurn && dealerPoints >= 17) {
-                console.log('other if', dealerPoints)
-                setDealerTurn(false)
-                setGameOver(true)
-                console.log('gameOver')
-            }else if(dealerTurn && dealerPoints < 17) {
-                console.log('if', dealerPoints)
-                let card = DrawCard(deck)
+        if(dealerTurn && dealerPoints >= 17) {
+            setDealerTurn(false)
+            setGameOver(true)
+        }else if(dealerTurn && dealerPoints < 17) {
+            setTimeout(() => {
+                let card = DealerDrawCard(deck, true)
                 setDealerHand(()=>[...dealerHand, card])
-            }
-    }, [dealerHand, dealerTurn, dealerPoints, gameOver])
-
+            }, 2000)
+        }
+    }, [dealerHand, dealerTurn])
 
     if(betting) {
         return (
-            <div className="black-jack">
+            <div className="black-jack" style={{textAlign: "center"}}>
                 <div>
                     <h1>Please Place Your Bet</h1>
                     <button onClick={() => handleBetClick(5)}>$5</button>
@@ -181,20 +237,22 @@ export default function BlackJack({ user, chips }) {
                 </div>
                 <div>
                 <h1>Current Bet: ${currentBet}</h1>
-                    <button onClick={() => handleLockIn()}>Lock In Bet</button>
+                <h2> Current Chips: ${chips}</h2>
+                <button onClick={() => handleLockIn()}>Lock In Bet</button>
                 </div>
             </div>
         )
     }
     return (
-        <div className="black-jack">
+        <div className="black-jack" style={{textAlign: "center"}}>
             <aside className="black-jack-aside">
-                <h1>Current Bet: ${currentBet}</h1>
+                <h1>Chips: ${chips}</h1>
+                <h1>Bet: ${currentBet}</h1>
             </aside>
             {gameOver || blackJack ? (
             <div>
-                <h1>{outCome}</h1>
-                <h1>Play Again?</h1>
+                <h2>{outCome}</h2>
+                <h2>Play Again?</h2>
                 <button onClick={() => handleRestartClick()}>Yes</button>
                 <button onClick={() => handleQuitClick()}>No</button>
             </div>)
@@ -219,6 +277,7 @@ export default function BlackJack({ user, chips }) {
                     return <Cards key={index} card={card} />
                 })}
             </div>
+            { gameOver ? null :
             <div className="action">
                 <div style={{ paddingRight: "20px" }}>
                     <button className="action-btn" onClick={() => handleHitClick()}>Hit</button>
@@ -227,6 +286,7 @@ export default function BlackJack({ user, chips }) {
                     <button className="action-btn" onClick={() => handleHoldClick()}>Hold</button>
                 </div>
             </div>
+            }
         </div>
     )
 }

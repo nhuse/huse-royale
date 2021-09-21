@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/me', to: 'users#show'
   post '/signup', to: 'users#create'
-  post '/users/:id', to: 'users#update'
+  patch '/users/:id', to: 'users#update'
 
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'

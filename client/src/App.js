@@ -21,6 +21,23 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
+    if(user){
+      let data={
+        chips: chips
+      }
+      fetch(`/users/${user.id}`, {
+        method: "PATCH",
+        headers: {
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(resp => resp.json())
+      .then(data => console.log(data))
+    }
+  }, [chips])
+
   return (
     <Switch>
       <Route path='/login' >
@@ -30,7 +47,7 @@ function App() {
         <Signup setUser={setUser} setChips={setChips} />
       </Route>
       <Route path='/game-room'>
-        <GameRoom user={user} setUser={setUser} chips={chips} />
+        <GameRoom user={user} setUser={setUser} chips={chips} setChips={setChips} />
       </Route>
       <Route exact path='/' render={() => (
         user ? <Redirect to='/game-room' /> : <FrontPage />
