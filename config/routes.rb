@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  get '/win_loss_history/:user_id', to: 'win_loss_histories#show'
-  post '/win_loss_history', to: 'win_loss_histories#create'
+  get '/user_comments/:user_id', to: 'comments#user_comments'
+  get '/game_comments/:game_id', to: 'comments#game_comments'
+  post '/comments', to: 'comments#create'
+  patch '/comments/:id', to: 'comments#update'
+  delete '/comments/:id', to: 'comments#destroy'
 
   get '/me', to: 'users#show'
   post '/signup', to: 'users#create'

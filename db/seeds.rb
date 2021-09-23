@@ -11,27 +11,7 @@ User.create(first_name: "Nate", last_name: "Huse", username: "nhuse", email: "12
 puts "Done Seeding Users!"
 
 puts "Seeding Games..."
-Game.create(name: "Black Jack")
-Game.create(name: "Roulette")
-Game.create(name: "Slots")
-Game.create(name: "Texas Hold 'Em")
+Game.create(name: "Black Jack", img: "https://www.thesportsbank.net/wp-content/uploads/2020/04/BLACK-JACK.jpg")
+Game.create(name: "Roulette", img: "https://extrabetamerica.imgix.net/1aacb593ba314efb9464f00c74e616c5.jpg?fit=crop&ar=1:1")
+Game.create(name: "Slots", img: "https://slots.info/wp-content/uploads/2018/02/best-3-reel-slots.jpg")
 puts "Done Seeding Games"
-
-puts "Seeding Win/Losses..."
-WinLossHistory.create(user_id: 1, game_id: 1, totalLG: 86)
-WinLossHistory.create(user_id: 1, game_id: 3, totalLG: 169)
-WinLossHistory.create(user_id: 1, game_id: 2, totalLG: -96)
-WinLossHistory.create(user_id: 1, game_id: 1, totalLG: -45)
-WinLossHistory.create(user_id: 1, game_id: 4, totalLG: -99)
-WinLossHistory.create(user_id: 1, game_id: 4, totalLG: 506)
-WinLossHistory.create(user_id: 1, game_id: 2, totalLG: 1023)
-WinLossHistory.create(user_id: 1, game_id: 3, totalLG: -18)
-WinLossHistory.create(user_id: 1, game_id: 3, totalLG: 982)
-WinLossHistory.create(user_id: 1, game_id: 1, totalLG: -1046)
-WinLossHistory.create(user_id: 1, game_id: 2, totalLG: -96)
-WinLossHistory.create(user_id: 1, game_id: 1, totalLG: 113)
-WinLossHistory.create(user_id: 1, game_id: 4, totalLG: -86)
-WinLossHistory.create(user_id: 1, game_id: 3, totalLG: 169)
-WinLossHistory.create(user_id: 1, game_id: 2, totalLG: -96)
-WinLossHistory.create(user_id: 1, game_id: 4, totalLG: -45)
-puts "Done Seeding Win/Losses!"
