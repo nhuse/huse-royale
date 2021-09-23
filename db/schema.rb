@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_18_065037) do
+ActiveRecord::Schema.define(version: 2021_09_23_202146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bank_transactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bank_transactions_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "game_id", null: false
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_comments_on_game_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.string "name"
@@ -36,16 +54,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_065037) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "win_loss_histories", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "game_id", null: false
-    t.string "comment"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_win_loss_histories_on_game_id"
-    t.index ["user_id"], name: "index_win_loss_histories_on_user_id"
-  end
-
-  add_foreign_key "win_loss_histories", "games"
-  add_foreign_key "win_loss_histories", "users"
+  add_foreign_key "bank_transactions", "users"
+  add_foreign_key "comments", "games"
+  add_foreign_key "comments", "users"
 end

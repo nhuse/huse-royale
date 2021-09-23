@@ -3,17 +3,18 @@ import { useState, useEffect } from 'react'
 import Navbar from "./Navbar"
 import { Link } from "react-router-dom"
 
-export default function GameRoom({ user, setUser }) {
+export default function GameRoom({ chips, user, setUser }) {
     const [games, setGames] = useState([])
     useEffect(() => {
         fetch('/games')
         .then(r => r.json())
         .then(data => setGames(data))
-    }, [user])
+        // If user gets below 15 chips and 15 chips in the bank, 2500 chips is added as courtesy.
+        
+    }, [])
     
     return (
         <>
-        <Navbar user={user} setUser={setUser} />
         <div className="game-flex-container">
             {games.map(game => {
                 return <div key={game.id} className="card">
@@ -24,8 +25,8 @@ export default function GameRoom({ user, setUser }) {
                         </div>
                     </Link>
                     <button className="review-button">
-                        <Link to={`/game_reviews/${game.id}`} style={{ color: "grey" }}>
-                            Reviews
+                        <Link to={`/comments/game/${game.id}`} style={{ color: "grey" }}>
+                            Comments
                         </Link>
                     </button>
                 </div>

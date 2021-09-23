@@ -37,7 +37,7 @@ export default function Navbar({ user, setUser }) {
             </button >
             <button onClick={handleLogoutClick} className="logout-button" >Logout</button>
             <button className="nav-button" id="profile-wrapper-button" >
-                <NavLink to={`/profile/${user.username}`}
+                <NavLink to={`/profile/${user.id}`}
                 style={{ color: "grey" }}
                 activeStyle={{ fontWeight: "bold", color: "black" }}>
                     Hello, {user.first_name}

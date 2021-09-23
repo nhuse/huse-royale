@@ -1,25 +1,32 @@
 import './App.css'
 import { useState, useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import Login from './components/Login'
 import Signup from './components/Signup';
 import GameRoom from './components/GameRoom'
-import FrontPage from './components/FrontPage'
+import Navbar from './components/Navbar'
 import GameSelector from './components/GameSelector';
 import Profile from './components/Profile'
+import Comments from './components/Comments';
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState(null)
   const [chips, setChips] = useState(null)
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
     fetch('/me').then((r) => {
       if(r.ok){
-        r.json().then((user) => {
+        r.json().then(user => {
           setUser(user)
           setChips(user.chips)
         })
       }
+    })
+    fetch(`/comments`)
+    .then(r => r.json())
+    .then(data => {
+      setComments(data)
     })
   }, [])
 
@@ -38,28 +45,46 @@ function App() {
       .then(resp => resp.json())
     }
   }, [chips])
-
+  if(!user) {
+    return (
+    <div>
+        <h1 style={{ textAlign: 'center' }}>Thanks for checking out The Huse Royale! Please <Link to='/login'>LOGIN</Link> or <Link to='/signup'>REGISTER</Link> to play our games!</h1>
+        <Switch>
+          <Route path="/login">
+            <Login setUser={setUser} setChips={setChips} />
+          </Route>
+          <Route path="/signup">
+            <Signup setUser={setUser} setChips={setChips} />
+          </Route>
+        </Switch>
+    </div>)
+  }
   return (
-    <Switch>
-      <Route path='/login' >
-        <Login setUser={setUser} setChips={setChips} />
-      </Route>
-      <Route path='/game/:game_id'>
-        <GameSelector user={user} chips={chips} setChips={setChips} />
-      </Route>
-      <Route path='/signup' >
-        <Signup setUser={setUser} setChips={setChips} />
-      </Route>
-      <Route path='/game_room'>
-        <GameRoom user={user} setUser={setUser} />
-      </Route>
-      <Route path='/profile/:username'>
-        <Profile user={user} chips={chips} setUser={setUser} />
-      </Route>
-      <Route exact path='/' render={() => (
-        user ? <Redirect to='/game_room' /> : <FrontPage />
-      )}/>
-    </Switch>
+    <div>
+      <div>
+        <Navbar user={user} setUser={setUser}/>
+      </div>
+      <Switch>
+        <Route path='/login'>
+          <Login setUser={setUser} setChips={setChips} />
+        </Route>
+        <Route path='/game/:game_id'>
+          <GameSelector user={user} chips={chips} setChips={setChips} />
+        </Route>
+        <Route path='/signup'>
+          <Signup setUser={setUser} setChips={setChips} />
+        </Route>
+        <Route path='/game_room'>
+          <GameRoom user={user} chips={chips} />
+        </Route>
+        <Route path='/comments/game/:game_id'>
+          <Comments user={user} comments={comments} setComments={setComments} />
+        </Route>
+        <Route path='/profile/:user_id'>
+          <Profile comments={comments} setComments={setComments} user={user} setUser={setUser} chips={chips} />
+        </Route>
+      </Switch>
+    </div>
   );
 }
 

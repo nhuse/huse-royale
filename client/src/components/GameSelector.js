@@ -9,14 +9,12 @@ export default function GameSelector({ user, chips, setChips, setUser }) {
     if (game_id === '1') {
         return (
         <>
-        <Navbar user={user} setUser={setUser} />
         <BlackJack user={user} chips={chips} setChips={setChips} />
         </>
         )
     } else if (game_id === '2') {
         return (
         <>
-        <Navbar user={user} setUser={setUser} />
         <Roulette user={user} chips={chips} setChips={setChips} />
         </>
         )
