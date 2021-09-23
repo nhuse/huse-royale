@@ -3,13 +3,9 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import Cards from './Cards';
 import { CardsImages } from './helpers/CardsImage'
-import { useFetchChips } from '../hooks/useFetchChips';
 
 export default function BlackJack({ user, chips, setChips }) {
     const history = useHistory()
-    console.log(user)
-    const gameId=1;
-    //Make cards objects(eg: 1: {name: "Two of Spades", value: 2})
     const deck = [
         {name: 'Two of Spades', value: 2},
         {name: 'Two of Clubs', value: 2},
@@ -160,10 +156,10 @@ export default function BlackJack({ user, chips, setChips }) {
     useEffect(() => {
         if(isInitialDraw === true && dealerHand.length > 0 && playerHand.length > 0){
             if(
-            (playerHand[0].value === 11 && (playerHand[1].value === 10)) || 
-            (playerHand[0].value === 10 && (playerHand[1].value === 11)) && 
-            (dealerHand[0].value === 11 && (dealerHand[1].value === 10)) || 
-            (dealerHand[0].value === 10 && (dealerHand[1].value === 11))
+            (((playerHand[0].value === 11) && (playerHand[1].value === 10)) || 
+            (((playerHand[0].value === 10) && (playerHand[1].value === 11)))) && 
+            (((dealerHand[0].value === 11) && (dealerHand[1].value === 10)) || 
+            (((dealerHand[0].value === 10) && (dealerHand[1].value === 11))))
             ) {
                 setBlackJack(true)
                 setChips(prev => prev + currentBet)
@@ -260,7 +256,7 @@ export default function BlackJack({ user, chips, setChips }) {
             null}
             {!dealerTurn && !gameOver && !blackJack ? (
                 <div className="dealer-cards">
-                <img src={CardsImages('Back')} style={{ width: "225px", height: "300px", borderRadius: "10px", margin: "0px 15px 0px 0px" }} />
+                <img src={CardsImages('Back')} alt="card-back" style={{ width: "225px", height: "300px", borderRadius: "10px", margin: "0px 15px 0px 0px" }} />
                 {dealerHand.slice(1).map((card, index) => {
                     return <Cards key={index} card={card} />
                 })}

@@ -23,8 +23,6 @@ export default function GameRoom({ games, user, setUser }) {
                     </button>
                 </div>
             })}
-            {/* <Roulette user={user} chips={chips} setChips={setChips} /> */}
-            {/* <BlackJack user={user} chips={chips} setChips={setChips} /> */}
         </div>
         </>
     )

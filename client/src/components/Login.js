@@ -32,7 +32,7 @@ export default function Login({ setUser, setChips }) {
             } else {
                 setUser(data)
                 setChips(data.chips)
-                history.push("/game-room")
+                history.push("/game_room")
             }
         })
     }
