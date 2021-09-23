@@ -28,6 +28,8 @@
 }
 
 .review-button {
-    width: 70px;
+    width: auto;
+    font-size: 30px;
     border-radius: 20px;
+    margin-bottom: 10px;
 }

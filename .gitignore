@@ -26,5 +26,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignores node modules folder
+# Ignore node modules folder
 /node_modules
+
+# Ignore VSCode settings
+/.vscode

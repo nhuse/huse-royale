@@ -41,7 +41,6 @@ export default function Register({ setUser, setChips }) {
         .then(response => response.json())
         .then(data => {
             if (data.errors) {
-                console.log(data)
                 alert(data.errors)
             }
             else {
