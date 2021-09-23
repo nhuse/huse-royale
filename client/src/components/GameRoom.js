@@ -1,9 +1,16 @@
 import './styles/GameCard.css'
+import { useState, useEffect } from 'react'
 import Navbar from "./Navbar"
 import { Link } from "react-router-dom"
 
-export default function GameRoom({ games, user, setUser }) {
-    console.log(games)
+export default function GameRoom({ user, setUser }) {
+    const [games, setGames] = useState([])
+    useEffect(() => {
+        fetch('/games')
+        .then(r => r.json())
+        .then(data => setGames(data))
+    }, [user])
+    
     return (
         <>
         <Navbar user={user} setUser={setUser} />

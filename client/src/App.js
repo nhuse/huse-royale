@@ -6,11 +6,11 @@ import Signup from './components/Signup';
 import GameRoom from './components/GameRoom'
 import FrontPage from './components/FrontPage'
 import GameSelector from './components/GameSelector';
+import Profile from './components/Profile'
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
   const [chips, setChips] = useState(null)
-  const [games, setGames] = useState([])
 
   useEffect(() => {
     fetch('/me').then((r) => {
@@ -22,12 +22,6 @@ function App() {
       }
     })
   }, [])
-
-  useEffect(() => {
-    fetch('/games')
-    .then(r => r.json())
-    .then(data => setGames(data))
-  }, [user])
 
   useEffect(() => {
     if(user){
@@ -42,7 +36,6 @@ function App() {
         body: JSON.stringify(data)
       })
       .then(resp => resp.json())
-      .then(data => console.log(data))
     }
   }, [chips])
 
@@ -58,7 +51,10 @@ function App() {
         <Signup setUser={setUser} setChips={setChips} />
       </Route>
       <Route path='/game_room'>
-        <GameRoom games={games} user={user} setUser={setUser} />
+        <GameRoom user={user} setUser={setUser} />
+      </Route>
+      <Route path='/profile/:username'>
+        <Profile user={user} chips={chips} setUser={setUser} />
       </Route>
       <Route exact path='/' render={() => (
         user ? <Redirect to='/game_room' /> : <FrontPage />
