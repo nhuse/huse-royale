@@ -8,6 +8,7 @@ import Navbar from './components/Navbar'
 import GameSelector from './components/GameSelector';
 import Profile from './components/Profile'
 import Comments from './components/Comments';
+import Bank from './components/Bank';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -62,7 +63,7 @@ function App() {
   return (
     <div>
       <div>
-        <Navbar user={user} setUser={setUser}/>
+        <Navbar user={user} setUser={setUser} chips={chips} />
       </div>
       <Switch>
         <Route path='/login'>
@@ -82,6 +83,9 @@ function App() {
         </Route>
         <Route path='/profile/:user_id'>
           <Profile comments={comments} setComments={setComments} user={user} setUser={setUser} chips={chips} />
+        </Route>
+        <Route>
+          <Bank user={user} chips={chips} setUser={setUser} setChips={setChips} />
         </Route>
       </Switch>
     </div>
