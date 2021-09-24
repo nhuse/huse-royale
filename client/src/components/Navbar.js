@@ -4,7 +4,7 @@ import './styles/NavBarStyles.css'
 
 export default function Navbar({ user, setUser }) {
     const history = useHistory()
-    let userImg;
+    let userImg = 'https://i.imgur.com/9UfDphN.jpg'
     function handleLogoutClick() {
         fetch('/signout', {
             method: "DELETE"
@@ -20,10 +20,9 @@ export default function Navbar({ user, setUser }) {
     if(user){
         if(user.user_img) {
             userImg = user.user_img
-        } else {
-            userImg = 'https://i.imgur.com/9UfDphN.jpg'
         }
     }
+
     return (
         <nav className="nav-bar" >
             { user ? 
@@ -44,6 +43,15 @@ export default function Navbar({ user, setUser }) {
                 </NavLink> 
                 <img src={userImg} className="profile-pic" alt="Profile"/>
             </button>
+            <div id="bank">
+                <button className="bank-button">
+                    <NavLink exact to="/bank"
+                    style={{ color: "grey" }}
+                    activeStyle={{ fontWeight: "bold", color: "black" }}>
+                        The Bank
+                    </NavLink>
+                </button>
+            </div>
             </>) 
             : 
             (<>

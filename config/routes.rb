@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
  
   resources :games, only: [:index]
+
+  post '/bank', to: 'bank_transactions#create'
+  get '/bank/:user_id', to: 'bank_transactions#show'
+
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
