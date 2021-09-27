@@ -29,7 +29,7 @@ function App() {
     .then(data => {
       setComments(data)
     })
-  }, [])
+  }, [chips])
 
   useEffect(() => {
     if(user){
@@ -46,6 +46,7 @@ function App() {
       .then(resp => resp.json())
     }
   }, [chips])
+
   if(!user) {
     return (
     <div>

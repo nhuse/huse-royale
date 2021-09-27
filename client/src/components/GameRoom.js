@@ -1,16 +1,13 @@
 import './styles/GameCard.css'
 import { useState, useEffect } from 'react'
-import Navbar from "./Navbar"
 import { Link } from "react-router-dom"
 
-export default function GameRoom({ chips, user, setUser }) {
+export default function GameRoom() {
     const [games, setGames] = useState([])
     useEffect(() => {
         fetch('/games')
         .then(r => r.json())
-        .then(data => setGames(data))
-        // If user gets below 15 chips and 15 chips in the bank, 2500 chips is added as courtesy.
-        
+        .then(data => setGames(data))        
     }, [])
     
     return (

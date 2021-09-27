@@ -14,6 +14,8 @@ export default function Bank({ user, chips, setUser, setChips }) {
         })
     }, [])
 
+    console.log(user)
+
     function handleDeposit(e) {
         e.preventDefault()
         const parsedAmount = parseInt(depositAmount)
@@ -145,6 +147,8 @@ export default function Bank({ user, chips, setUser, setChips }) {
                     </div>
                 </div>
                 <div id="recent-transactions-wrapper">
+                    {transactions.length > 0 ?
+                    <>
                     <h1>Recent Transactions</h1>
                     <ul style={{ height: "auto", marginRight: "30px", width: "50vw", border: "4px solid grey", borderRadius: "20px" }}>
                     {transactions.map(t => {
@@ -162,6 +166,8 @@ export default function Bank({ user, chips, setUser, setChips }) {
                         )
                     })}
                     </ul>
+                    </> :
+                    <h1>No recent Transactions</h1>}
                 </div>
             </div>
         </div>

@@ -84,7 +84,7 @@ function Roulette({ chips, setChips }) {
     }
 
     const winOrLose = () => {
-        if(userNumber === prizeNumber) {
+        if(userNumber == prizeNumber) {
             setChips(prev => prev + (currentBet * 50))
             setOutcome('Congrats! You win!')
         } else {

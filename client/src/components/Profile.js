@@ -144,7 +144,7 @@ export default function Profile({ comments, setComments, user, chips, setUser })
                             <button className="edit-prof-submit">Submit</button>
                         </form>
                     </div>
-                    <div className="form-entry-wrapper">
+                    <div className="form-entry-wrapper" style={{marginBottom: "20px"}}>
                         <h1>{user.email}</h1>
                         <form onSubmit={handleEmailSubmit} className="edit-prof-form">
                             <input

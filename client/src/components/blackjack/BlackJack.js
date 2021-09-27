@@ -58,7 +58,7 @@ export default function BlackJack({ user, chips, setChips }) {
         {name: 'Ace of Spades', value: 11},
         {name: 'Ace of Clubs', value: 11},
         {name: 'Ace of Hearts', value: 11},
-        {name: 'Ace of Diamonds', value: 11},
+        {name: 'Ace of Diamonds', value: 11}
     ]
     const [blackJack, setBlackJack] = useState(false)
     const [playerHand, setPlayerHand] = useState([])
@@ -124,8 +124,9 @@ export default function BlackJack({ user, chips, setChips }) {
         
     function initialDraw() {
         setPlayerHand([...playerHand,
-            PlayerDrawCard(deck),
-            PlayerDrawCard(deck)]
+            deck[51],
+            deck[46]
+        ]
         )
         setDealerHand([...dealerHand,
             DealerDrawCard(deck),
@@ -170,7 +171,7 @@ export default function BlackJack({ user, chips, setChips }) {
             (playerHand[0].value === 10 && (playerHand[1].value === 11))
             ) {
                 setBlackJack(true)
-                setChips(prev => prev + currentBet + (currentBet * 1.5))
+                setChips(prev => prev + (currentBet + (currentBet * 1.5)))
                 setOutcome('Congrats! You got a blackjack! You win!')
             }
             if(
