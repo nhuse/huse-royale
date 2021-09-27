@@ -21,6 +21,7 @@
 
 #wd-wrapper {
     width: 50vw;
+    height: 85vh;
     display: flex;
     flex-flow: column;
     align-items: center;
