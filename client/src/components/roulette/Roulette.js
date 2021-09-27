@@ -89,7 +89,7 @@ function Roulette({ chips, setChips }) {
             setOutcome('Congrats! You win!')
         } else {
             setChips(prev => prev - currentBet)
-            setOutcome('You picked the wrong number. You lose.')
+            setOutcome(`The winning number is ${prizeNumber}. You lose.`)
         }
         setGameOver(true)
     }

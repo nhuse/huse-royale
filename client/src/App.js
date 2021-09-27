@@ -29,7 +29,7 @@ function App() {
     .then(data => {
       setComments(data)
     })
-  }, [chips])
+  }, [])
 
   useEffect(() => {
     if(user){
@@ -44,13 +44,17 @@ function App() {
         body: JSON.stringify(data)
       })
       .then(resp => resp.json())
+      .then(data => setUser(data))
     }
   }, [chips])
 
   if(!user) {
     return (
     <div>
-        <h1 style={{ textAlign: 'center' }}>Thanks for checking out The Huse Royale! Please <Link to='/login'>LOGIN</Link> or <Link to='/signup'>REGISTER</Link> to play our games!</h1>
+        <h1 style={{ textAlign: 'center', marginTop: '0px' }}>
+          Thanks for checking out The Huse Royale! <br/><br/> 
+          Please <Link to='/login'>LOGIN</Link> or <Link to='/signup'>REGISTER</Link> to play our games!
+        </h1>
         <Switch>
           <Route path="/login">
             <Login setUser={setUser} setChips={setChips} />

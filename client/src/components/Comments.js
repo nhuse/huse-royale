@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import Navbar from './Navbar'
 
 export default function Comments({ user, comments, setComments }) {
-    let { game_id, user_id } = useParams();
+    let { game_id } = useParams();
     game_id = parseInt(game_id)
     const [commentContent, setCommentContent] = useState({
         comment: '',
@@ -43,7 +43,7 @@ export default function Comments({ user, comments, setComments }) {
 
     return (
         <>
-        <div style={{ height: "95vh", color: "white", display: "flex", flexFlow: "column wrap", alignContent: "center" }}>
+        <div style={{ height: "92vh", color: "white", display: "flex", flexFlow: "column wrap", alignContent: "center" }}>
             <div className="review-wrapper">
                 <h1>Comments</h1>
                 <ul style={{ listStyle: "none", width: "500px", padding: "0px" }}>

@@ -1,5 +1,5 @@
 #the-bank {
-    height: 95vh;
+    height: 92vh;
 }
 
 .info {
@@ -21,7 +21,6 @@
 
 #wd-wrapper {
     width: 50vw;
-    height: 89vh;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -66,14 +65,13 @@
 }
 
 form {
-    border: 4px solid grey;
     border-radius: 20px;
     padding: 20px;
 }
 
 #recent-transactions-wrapper {
     text-align: center;
-    margin: auto;
+    margin: 5px;
     height: auto;
 }
 

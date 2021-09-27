@@ -14,8 +14,6 @@ export default function Bank({ user, chips, setUser, setChips }) {
         })
     }, [])
 
-    console.log(user)
-
     function handleDeposit(e) {
         e.preventDefault()
         const parsedAmount = parseInt(depositAmount)
@@ -26,7 +24,7 @@ export default function Bank({ user, chips, setUser, setChips }) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                chips: (user.chips - parsedAmount),
+                chips: (chips - parsedAmount),
                 bank: (user.bank + parsedAmount)
             })
             })
@@ -63,7 +61,7 @@ export default function Bank({ user, chips, setUser, setChips }) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                chips: (user.chips + parsedAmount),
+                chips: (chips + parsedAmount),
                 bank: (user.bank - parsedAmount)
             })
             })
@@ -110,7 +108,7 @@ export default function Bank({ user, chips, setUser, setChips }) {
             <div className="bank-tab">
                 <div id="wd-wrapper">
                     <div className="withdraw">
-                        <form onSubmit={handleWithdraw}>
+                        <form onSubmit={handleWithdraw} style={{ border: "4px solid grey" }} >
                             <label htmlFor="withdraw-field" style={{ fontSize: "30px" }}>Withdraw Money</label> <br/>
                             <input 
                             type="number" 
@@ -128,7 +126,7 @@ export default function Bank({ user, chips, setUser, setChips }) {
                         </form>
                     </div>
                     <div className="deposit">
-                        <form onSubmit={handleDeposit}>
+                        <form onSubmit={handleDeposit} style={{ border: "4px solid grey" }} >
                             <label htmlFor="deposit-field" style={{ fontSize: "30px" }}>Deposit Money</label> <br/>
                             <input
                             type="number"
@@ -149,8 +147,8 @@ export default function Bank({ user, chips, setUser, setChips }) {
                 <div id="recent-transactions-wrapper">
                     {transactions.length > 0 ?
                     <>
-                    <h1>Recent Transactions</h1>
-                    <ul style={{ height: "auto", marginRight: "30px", width: "50vw", border: "4px solid grey", borderRadius: "20px" }}>
+                    <h1 style={{ margin: "0px" }}>Recent Transactions</h1>
+                    <ul style={{ height: "auto", margin: "0 30px 0 0", width: "50vw", border: "4px solid grey", borderRadius: "20px" }}>
                     {transactions.map(t => {
                         const date = new Date(t.created_at)
                         const string = `${months[date.getMonth()]} ${date.getDate()} at ${formatAMPM(date)}`

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import './styles/NavBarStyles.css'
 
-export default function Navbar({ user, setUser }) {
+export default function Navbar({ user, setUser, chips }) {
     const history = useHistory()
     let userImg = 'https://i.imgur.com/9UfDphN.jpg'
     function handleLogoutClick() {
@@ -27,7 +27,7 @@ export default function Navbar({ user, setUser }) {
         <nav className="nav-bar" >
             { user ? 
             (<>
-            <button className="nav-button" >
+            <button className="home-button" >
                 <NavLink exact to="/game_room"
                 style={{ color: "grey" }}
                 activeStyle={{ fontWeight: "bold", color: "black" }}>
@@ -41,8 +41,10 @@ export default function Navbar({ user, setUser }) {
                 activeStyle={{ fontWeight: "bold", color: "black" }}>
                     Hello, {user.first_name}
                 </NavLink> 
-                <img src={userImg} className="profile-pic" alt="Profile"/>
+                <img src={userImg} className="profile-pic" alt="Profile" />
             </button>
+            <h1 style={{ marginLeft: "50px", fontSize: "25px" }}>Current Chips: ${chips}</h1>
+            <h1 style={{ marginLeft: "50px", fontSize: "25px" }}>Bank Account: ${user.bank}</h1>
             <div id="bank">
                 <button className="bank-button">
                     <NavLink exact to="/bank"

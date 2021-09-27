@@ -113,7 +113,7 @@ export default function Profile({ comments, setComments, user, chips, setUser })
                 </div>
                 <div className="edit-profile">
                     <div className="form-entry-wrapper">
-                        <img alt={"avatar"} src={userImg} style={{marginTop:"0px", maxHeight: '150px', maxWidth: '150px', padding: "5px"}}/>
+                        <img alt={"avatar"} src={userImg} style={{marginTop:"0px", maxHeight: '225px', maxWidth: '225px', padding: "5px"}}/>
                         <form onSubmit={handleAvatarSubmit} className="edit-prof-form">
                             <input
                                 className="edit-prof-input"
@@ -164,10 +164,10 @@ export default function Profile({ comments, setComments, user, chips, setUser })
             </div>
         </div>
         <div className="chips-bank">
-            <div style={{ margin: "auto", fontSize: "30px" }}>
+            <div style={{ margin: "auto", fontSize: "25px" }}>
                 <h1>Chips: ${chips}</h1>
             </div>
-            <div style={{ margin: "auto", fontSize: "30px" }}>
+            <div style={{ margin: "auto", fontSize: "25px" }}>
                 <h1>Bank: ${user.bank}</h1>
             </div>
         </div>

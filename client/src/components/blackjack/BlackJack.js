@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Cards from './Cards';
 import { CardsImages } from './helpers/CardsImage'
 
-export default function BlackJack({ user, chips, setChips }) {
+export default function BlackJack({ chips, setChips }) {
     const history = useHistory()
     const deck = [
         {name: 'Two of Spades', value: 2},
@@ -124,14 +124,13 @@ export default function BlackJack({ user, chips, setChips }) {
         
     function initialDraw() {
         setPlayerHand([...playerHand,
-            deck[51],
-            deck[46]
-        ]
-        )
+            PlayerDrawCard(deck),
+            PlayerDrawCard(deck)
+        ])
         setDealerHand([...dealerHand,
             DealerDrawCard(deck),
-            DealerDrawCard(deck)]
-        )
+            DealerDrawCard(deck)
+        ])
     }
 
     function PlayerDrawCard(deck) {
@@ -274,7 +273,7 @@ export default function BlackJack({ user, chips, setChips }) {
                     return <Cards key={index} card={card} />
                 })}
             </div>
-            { gameOver ? null :
+            { gameOver || blackJack ? null :
             <div className="action">
                 <div style={{ paddingRight: "20px" }}>
                     <button className="action-btn" onClick={() => handleHitClick()}>Hit</button>
