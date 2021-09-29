@@ -24,8 +24,8 @@ export default function Register({ setUser, setChips }) {
         let data = {
             first_name: formData.firstName,
             last_name: formData.lastName,
-            username: formData.username,
-            email: formData.email,
+            username: formData.username.toLowerCase(),
+            email: formData.email.toLowerCase(),
             password: formData.pass,
             password_confirmation: formData.confPass,
             chips: 5000,

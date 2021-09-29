@@ -60,7 +60,7 @@ export default function Profile({ comments, setComments, user, chips, setUser })
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            username: username
+            username: username.toLowerCase()
         }),
         })
         .then(r => r.json())
@@ -84,7 +84,7 @@ export default function Profile({ comments, setComments, user, chips, setUser })
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            email: email
+            email: email.toLowerCase()
         }),
         })
         .then(r => r.json())
