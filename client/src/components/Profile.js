@@ -27,7 +27,6 @@ export default function Profile({ comments, setComments, user, chips, setUser })
     let filteredComments = []
     if(comments.length > 0) {
         filteredComments = comments.filter(c => {
-            console.log(c)
             return c.user_id == user_id
         })
     }
@@ -50,6 +49,8 @@ export default function Profile({ comments, setComments, user, chips, setUser })
             setUser(data)
         });
     }
+
+    console.log(user)
 
     async function handleUsernameSubmit(e) {
         e.preventDefault();

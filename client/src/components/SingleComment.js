@@ -12,9 +12,6 @@ export default function SingleComment({ c, setComments }) {
         comment: ''
     })
 
-    console.log(editedComment)
-
-
     function handleDelete(id) {
         fetch(`/comments/${id}`, {
             method: "DELETE",
