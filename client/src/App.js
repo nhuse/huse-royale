@@ -15,7 +15,6 @@ function App() {
   const [user, setUser] = useState(null)
   const [chips, setChips] = useState(null)
   const [comments, setComments] = useState([])
-  const [canSpin, setCanSpin] = useState(false)
 
   useEffect(() => {
     fetch('/me').then((r) => {
@@ -35,14 +34,6 @@ function App() {
 
   useEffect(() => {
     if(user){
-      if(Date.now() > (user.last_slots_time + 86400000)) {
-        setCanSpin(true)
-      }
-    }
-  }, [user])
-
-  useEffect(() => {
-    if(user){
       let data={
         chips: chips
       }
@@ -54,7 +45,9 @@ function App() {
         body: JSON.stringify(data)
       })
       .then(resp => resp.json())
-      .then(data => setUser(data))
+      .then(data => {
+        setUser(data)
+      })
     }
   }, [chips])
 
@@ -104,7 +97,7 @@ function App() {
           <Bank user={user} chips={chips} setUser={setUser} setChips={setChips} />
         </Route>
         <Route path='/daily_slots'>
-          <DailySlots setChips={setChips} user={user} setUser={setUser} canSpin={canSpin} />
+          <DailySlots setChips={setChips} user={user} setUser={setUser} />
         </Route>
       </Switch>
     </div>

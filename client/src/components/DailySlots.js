@@ -103,11 +103,12 @@ const data = [
     ]
 ]
 
-export default function DailySlots({ setChips, user, setUser, canSpin }) {
+export default function DailySlots({ setChips, user, setUser }) {
     const [mustSpin, setMustSpin] = useState(false)
     const [prizeNumber, setPrizeNumber] = useState(Math.floor(Math.random() * 31))
     const [wheelNum, setWheelNum] = useState(Math.floor(Math.random() * data.length))
     const [amountWon, setAmountWon] = useState(null)
+    const [spun, setSpun] = useState(Date.now() < (user.last_slots_time + 86400000))
 
     const history = useHistory()
 
@@ -130,7 +131,10 @@ export default function DailySlots({ setChips, user, setUser, canSpin }) {
             })
         })
         .then(res => res.json())
-        .then(data => setUser(data))
+        .then(data => {
+            setUser(data)
+            setSpun(true)
+        })
     }
 
     function returnHomeClick() {
@@ -138,7 +142,7 @@ export default function DailySlots({ setChips, user, setUser, canSpin }) {
     }
 
     return (
-    canSpin ? 
+    !spun  ? 
     <div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "100px" }}>
         <Wheel 
@@ -161,14 +165,8 @@ export default function DailySlots({ setChips, user, setUser, canSpin }) {
         </div>
     </div>
     :
-    amountWon ? 
     <div style={{ textAlign: "center" }}>
-        <h1>Congrats! You won ${amountWon}! Come back in <Countdown date={user.last_slots_time + 86400000} /> to win again!</h1>
-        <button className="action-btn" onClick={returnHomeClick}>Return Home</button>
-    </div>
-    :
-    <div style={{ textAlign: "center" }}>
-        <h1>Come back in <Countdown date={user.last_slots_time + 86400000} /> to win again!</h1>
+        <h1>{amountWon ? `Congrats! You won $${amountWon}! ` : null}<br/>Come back in <Countdown date={user.last_slots_time + 86400000} /> to win again!</h1>
         <button className="action-btn" onClick={returnHomeClick}>Return Home</button>
     </div> 
     )
