@@ -9,11 +9,13 @@ import GameSelector from './components/GameSelector';
 import Profile from './components/Profile'
 import Comments from './components/Comments';
 import Bank from './components/Bank';
+import DailySlots from './components/DailySlots'
 
 function App() {
   const [user, setUser] = useState(null)
   const [chips, setChips] = useState(null)
   const [comments, setComments] = useState([])
+  const [canSpin, setCanSpin] = useState(false)
 
   useEffect(() => {
     fetch('/me').then((r) => {
@@ -30,6 +32,14 @@ function App() {
       setComments(data)
     })
   }, [])
+
+  useEffect(() => {
+    if(user){
+      if(Date.now() > (user.last_slots_time + 86400000)) {
+        setCanSpin(true)
+      }
+    }
+  }, [user])
 
   useEffect(() => {
     if(user){
@@ -65,6 +75,7 @@ function App() {
         </Switch>
     </div>)
   }
+
   return (
     <div>
       <div>
@@ -89,8 +100,11 @@ function App() {
         <Route path='/profile/:user_id'>
           <Profile comments={comments} setComments={setComments} user={user} setUser={setUser} chips={chips} />
         </Route>
-        <Route>
+        <Route path='/bank'>
           <Bank user={user} chips={chips} setUser={setUser} setChips={setChips} />
+        </Route>
+        <Route path='/daily_slots'>
+          <DailySlots setChips={setChips} user={user} setUser={setUser} canSpin={canSpin} />
         </Route>
       </Switch>
     </div>

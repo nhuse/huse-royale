@@ -52,113 +52,71 @@ import AceOfDiamonds from '../../../assets/cards/ace_of_diamonds.png'
 import AceOfHearts from '../../../assets/cards/ace_of_hearts.png'
 import AceOfSpades from '../../../assets/cards/ace_of_spades.png'
 
-export function CardsImages(cardType) {
-    switch(cardType) {
-        case 'Back':
-            return Back
-        case 'Two of Spades':
-            return TwoOfSpades
-        case 'Two of Clubs':
-            return TwoOfClubs
-        case 'Two of Hearts':
-            return TwoOfHearts
-        case 'Two of Diamonds':
-            return TwoOfDiamonds
-        case 'Three of Spades':
-            return ThreeOfSpades
-        case 'Three of Clubs':
-            return ThreeOfClubs
-        case 'Three of Hearts':
-            return ThreeOfHearts
-        case 'Three of Diamonds':
-            return ThreeOfDiamonds
-        case 'Four of Spades':
-            return FourOfSpades
-        case 'Four of Clubs':
-            return FourOfClubs
-        case 'Four of Hearts':
-            return FourOfHearts
-        case 'Four of Diamonds':
-            return FourOfDiamonds
-        case 'Five of Spades':
-            return FiveOfSpades
-        case 'Five of Clubs':
-            return FiveOfClubs
-        case 'Five of Hearts':
-            return FiveOfHearts
-        case 'Five of Diamonds':
-            return FiveOfDiamonds
-        case 'Six of Spades':
-            return SixOfSpades
-        case 'Six of Clubs':
-            return SixOfClubs
-        case 'Six of Hearts':
-            return SixOfHearts
-        case 'Six of Diamonds':
-            return SixOfDiamonds
-        case 'Seven of Spades':
-            return SevenOfSpades
-        case 'Seven of Clubs':
-            return SevenOfClubs
-        case 'Seven of Hearts':
-            return SevenOfHearts
-        case 'Seven of Diamonds':
-            return SevenOfDiamonds
-        case 'Eight of Spades':
-            return EightOfSpades
-        case 'Eight of Clubs':
-            return EightOfClubs
-        case 'Eight of Hearts':
-            return EightOfHearts
-        case 'Eight of Diamonds':
-            return EightOfDiamonds
-        case 'Nine of Spades':
-            return NineOfSpades
-        case 'Nine of Clubs':
-            return NineOfClubs
-        case 'Nine of Hearts':
-            return NineOfHearts
-        case 'Nine of Diamonds':
-            return NineOfDiamonds
-        case 'Ten of Spades':
-            return TenOfSpades
-        case 'Ten of Clubs':
-            return TenOfClubs
-        case 'Ten of Hearts':
-            return TenOfHearts
-        case 'Ten of Diamonds':
-            return TenOfDiamonds
-        case 'Jack of Spades':
-            return JackOfSpades
-        case 'Jack of Clubs':
-            return JackOfClubs
-        case 'Jack of Hearts':
-            return JackOfHearts
-        case 'Jack of Diamonds':
-            return JackOfDiamonds
-        case 'Queen of Spades':
-            return QueenOfSpades
-        case 'Queen of Clubs':
-            return QueenOfClubs
-        case 'Queen of Hearts':
-            return QueenOfHearts
-        case 'Queen of Diamonds':
-            return QueenOfDiamonds
-        case 'King of Spades':
-            return KingOfSpades
-        case 'King of Clubs':
-            return KingOfClubs
-        case 'King of Hearts':
-            return KingOfHearts
-        case 'King of Diamonds':
-            return KingOfDiamonds
-        case 'Ace of Spades':
-            return AceOfSpades
-        case 'Ace of Clubs':
-            return AceOfClubs
-        case 'Ace of Hearts':
-            return AceOfHearts
-        case 'Ace of Diamonds':
-            return AceOfDiamonds
-    }
+export function CardsImages() {
+    return [Back, TwoOfClubs, TwoOfDiamonds, TwoOfHearts, TwoOfSpades,
+            ThreeOfClubs, ThreeOfDiamonds, ThreeOfHearts, ThreeOfSpades,
+            FourOfClubs, FourOfDiamonds, FourOfHearts, FourOfSpades,
+            FiveOfClubs, FiveOfDiamonds, FiveOfHearts, FiveOfSpades,
+            SixOfClubs, SixOfDiamonds, SixOfHearts, SixOfSpades,
+            SevenOfClubs, SevenOfDiamonds, SevenOfHearts, SevenOfSpades,
+            EightOfClubs, EightOfDiamonds, EightOfHearts, EightOfSpades,
+            NineOfClubs, NineOfDiamonds, NineOfHearts, NineOfSpades,
+            TenOfClubs, TenOfDiamonds, TenOfHearts, TenOfSpades,
+            JackOfClubs, JackOfDiamonds, JackOfHearts, JackOfSpades,
+            QueenOfClubs, QueenOfDiamonds, QueenOfHearts, QueenOfSpades,
+            KingOfClubs, KingOfDiamonds, KingOfHearts, KingOfSpades,
+            AceOfClubs, AceOfDiamonds, AceOfHearts, AceOfSpades]
+    // const BackCard = Back
+    // const TwoOfClubsCard =TwoOfClubs
+    // const TwoOfDiamondsCard = TwoOfDiamonds
+    // const TwoOfHeartsCard = TwoOfHearts
+    // const TwoOfSpadesCard = TwoOfSpades
+    // const ThreeOfClubsCard = ThreeOfClubs
+    // const ThreeOfDiamondsCard = ThreeOfDiamonds
+    // const ThreeOfHeartsCard = ThreeOfHearts
+    // const ThreeOfSpadesCard = ThreeOfSpades
+    // const FourOfClubsCard = FourOfClubs
+    // const FourOfDiamondsCard = FourOfDiamonds
+    // const FourOfHeartsCard = FourOfHearts
+    // const FourOfSpadesCard = FourOfSpades
+    // const FiveOfClubsCard = FiveOfClubs
+    // const FiveOfDiamondsCard = FiveOfDiamonds
+    // const FiveOfHeartsCard = FiveOfHearts
+    // const FiveOfSpadesCard = FiveOfSpades
+    // const SixOfClubsCard = SixOfClubs
+    // const SixOfDiamondsCard = SixOfDiamonds
+    // const SixOfHeartsCard = SixOfHearts
+    // const SixOfSpadesCard = SixOfSpades
+    // const SevenOfClubsCard = SevenOfClubs
+    // const SevenOfDiamondsCard = SevenOfDiamonds
+    // const SevenOfHeartsCard = SevenOfHearts
+    // const SevenOfSpadesCard = SevenOfSpades
+    // const EightOfClubsCard = EightOfClubs
+    // const EightOfDiamondsCard = EightOfDiamonds
+    // const EightOfHeartsCard = EightOfHearts
+    // const EightOfSpadesCard = EightOfSpades
+    // const NineOfClubsCard = NineOfClubs
+    // const NineOfDiamondsCard = NineOfDiamonds
+    // const NineOfHeartsCard = NineOfHearts
+    // const NineOfSpadesCard = NineOfSpades
+    // const TenOfClubsCard = TenOfClubs
+    // const TenOfDiamondsCard = TenOfDiamonds
+    // const TenOfHeartsCard = TenOfHearts
+    // const TenOfSpadesCard = TenOfSpades
+    // const JackOfClubsCard = JackOfClubs
+    // const JackOfDiamondsCard = JackOfDiamonds
+    // const JackOfHeartsCard = JackOfHearts
+    // const JackOfSpadesCard = JackOfSpades
+    // const QueenOfClubsCard = QueenOfClubs
+    // const QueenOfDiamondsCard = QueenOfDiamonds
+    // const QueenOfHeartsCard = QueenOfHearts
+    // const QueenOfSpadesCard = QueenOfSpades
+    // const KingOfClubsCard = KingOfClubs
+    // const KingOfDiamondsCard = KingOfDiamonds
+    // const KingOfHeartsCard = KingOfHearts
+    // const KingOfSpadesCard = KingOfSpades
+    // const AceOfClubsCard = AceOfClubs
+    // const AceOfDiamondsCard = AceOfDiamonds
+    // const AceOfHeartsCard = AceOfHearts
+    // const AceOfSpadesCard = AceOfSpades;
 }

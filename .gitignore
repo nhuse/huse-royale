@@ -32,3 +32,6 @@
 
 # Ignore VSCode settings
 /.vscode
+
+# Ignore database config file
+/config/database.yml

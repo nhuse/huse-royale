@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.integer :chips
       t.integer :bank
       t.string :user_img
-      t.datetime :last_slots_time
+      t.integer :last_slots_time
 
       t.timestamps
     end

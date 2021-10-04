@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom'
+import Countdown from 'react-countdown'
 import './styles/NavBarStyles.css'
 
 export default function Navbar({ user, setUser, chips }) {
@@ -45,6 +45,27 @@ export default function Navbar({ user, setUser, chips }) {
             </button>
             <h1 style={{ marginLeft: "50px", fontSize: "25px" }}>Current Chips: ${chips}</h1>
             <h1 style={{ marginLeft: "50px", fontSize: "25px" }}>Bank Account: ${user.bank}</h1>
+            {user.last_slots_time ?
+            <div style={{ marginLeft: "auto", fontSize: "25px" }}>
+            <Countdown date={user.last_slots_time + 86400000}>
+                <button className="nav-button" style={{ marginLeft: "auto" }}>
+                    <NavLink to='/daily_slots'
+                    style={{ color: "grey" }}
+                    activeStyle={{ fontWeight: "bold", color: "black" }}>
+                        Daily Slots
+                    </NavLink>
+                </button>
+            </Countdown> Until Next Spin
+            </div>
+            :
+            <button className="nav-button" style={{ marginLeft: "auto" }}>
+                <NavLink to='/daily_slots'
+                style={{ color: "grey" }}
+                activeStyle={{ fontWeight: "bold", color: "black" }}>
+                    Daily Slots
+                </NavLink>
+            </button>
+            }
             <div id="bank">
                 <button className="bank-button">
                     <NavLink exact to="/bank"
