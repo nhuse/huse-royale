@@ -60,8 +60,9 @@
 
 .edit-prof-submit {
     text-align: center;
-    font-size: 20px;
-    height: 28px;
+    font-size: 25px;
+    width: 100px;
+    border-radius: 20px;
 }
 
 .edit-prof-form {

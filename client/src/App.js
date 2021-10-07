@@ -55,7 +55,7 @@ function App() {
     return (
     <div>
         <h1 style={{ textAlign: 'center', marginTop: '0px' }}>
-          Thanks for checking out The Huse Royale! <br/><br/> 
+          Thanks for checking out The Huse Royale! <br/><br/>
           Please <Link to='/login'>LOGIN</Link> or <Link to='/signup'>REGISTER</Link> to play our games!
         </h1>
         <Switch>

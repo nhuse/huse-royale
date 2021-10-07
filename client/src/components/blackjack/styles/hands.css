@@ -36,3 +36,19 @@
     font-size: 30px;
     cursor: pointer;
 }
+
+.bet-btn {
+    cursor: pointer;
+    font-size: 25px;
+    margin: 5px;
+    width: 90px;
+    border-radius: 20px;
+}
+
+.lockin-btn {
+    cursor: pointer;
+    font-size: 25px;
+    margin: 5px;
+    width: 150px;
+    border-radius: 20px;
+}

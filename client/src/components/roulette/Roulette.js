@@ -112,8 +112,8 @@ function Roulette({ chips, setChips }) {
                 <div style={{ textAlign: "center" }}>
                     <h2>{outcome}</h2>
                     <h2>Play Again?</h2>
-                    <button onClick={() => handleRestartClick()}>Yes</button>
-                    <button onClick={() => handleQuitClick()}>No</button>
+                    <button className="bet-btn" onClick={() => handleRestartClick()}>Yes</button>
+                    <button className="bet-btn" onClick={() => handleQuitClick()}>No</button>
                 </div>
                 :
                 null}
@@ -139,23 +139,23 @@ function Roulette({ chips, setChips }) {
             {!gameOver && !betting ?
             <button onClick={handleSpinClick} className="action-btn" >Spin!</button>
             :
-            <div style={{height: '50px'}} /> }
+            <div style={{ height: '25px' }} /> }
             
         </div>
         { betting && !gameOver ? (
-            <div className="roulette" style={{textAlign: "center"}}>
+            <div className="roulette" style={{ textAlign: "center" }}>
                 <div>
                     <h2 style={{ marginBottom: "10px" }}>Please Place Your Bet</h2>
-                    <button onClick={() => handleBetClick(5)}>$5</button>
-                    <button onClick={() => handleBetClick(10)}>$10</button>
-                    <button onClick={() => handleBetClick(50)}>$50</button>
-                    <button onClick={() => handleBetClick(100)}>$100</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(5)}>$5</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(10)}>$10</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(50)}>$50</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(100)}>$100</button>
                 </div>
                 <div>
-                    <button onClick={() => handleBetClick(-5)}>-$5</button>
-                    <button onClick={() => handleBetClick(-10)}>-$10</button>
-                    <button onClick={() => handleBetClick(-50)}>-$50</button>
-                    <button onClick={() => handleBetClick(-100)}>-$100</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-5)}>-$5</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-10)}>-$10</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-50)}>-$50</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-100)}>-$100</button>
                 </div>
                 <div>
                     <h2 style={{ margin: "5px 0px 5px 0px" }}>Current Bet: ${currentBet}</h2>
@@ -163,12 +163,12 @@ function Roulette({ chips, setChips }) {
                 </div>
                 <label htmlFor="user-number"><h2 style={{ marginTop: "0px" }}>Please enter your lucky number (0-40):</h2></label>
                 <input type="number" id="user-number" name="user-number" min="0" max="40" onChange={handleUserNumberChange} /> <br/>
-                <button onClick={() => handleBetLockIn()} style={{textAlign: "center"}}>Lock In Bet</button>
+                <button className="lockin-btn" onClick={() => handleBetLockIn()} style={{textAlign: "center"}}>Lock In Bet</button>
             </div>) 
         :
         <>
-        <h1>Current Bet: ${currentBet}</h1>
         <h1>Your Lucky Number: {userNumber}</h1>
+        <h1>Current Bet: ${currentBet}</h1>
         </>}
         
     </div>
