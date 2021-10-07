@@ -54,8 +54,10 @@ function App() {
   if(!user) {
     return (
     <div>
+        <h1 style={{ textAlign: 'center', marginTop: '0px', color: "gold", fontSize: '70px', fontFamily: "Lucida Handwriting", textShadow: "2px 3px #000000" }}>
+          The Huse Royale
+        </h1><br/>
         <h1 style={{ textAlign: 'center', marginTop: '0px' }}>
-          Thanks for checking out The Huse Royale! <br/><br/>
           Please <Link to='/login'>LOGIN</Link> or <Link to='/signup'>REGISTER</Link> to play our games!
         </h1>
         <Switch>
