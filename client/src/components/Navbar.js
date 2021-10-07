@@ -55,7 +55,7 @@ export default function Navbar({ user, setUser, chips }) {
                         Daily Slots
                     </NavLink>
                 </button>
-            </Countdown> Until Next Spin
+            </Countdown>
             </div>
             :
             <button className="nav-button" style={{ marginLeft: "auto" }}>

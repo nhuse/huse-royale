@@ -73,6 +73,7 @@ export default function BlackJack({ chips, setChips }) {
         {name: 'Ace of Hearts', value: 11, image: AceOfHearts},
         {name: 'Ace of Diamonds', value: 11, image: AceOfDiamonds}
     ]
+
     const [blackJack, setBlackJack] = useState(false)
     const [playerHand, setPlayerHand] = useState([])
     const [dealerHand, setDealerHand] = useState([])
@@ -85,6 +86,7 @@ export default function BlackJack({ chips, setChips }) {
     const [isInitialDraw, setIsInitialDraw] = useState(true)
     const [outCome, setOutcome] = useState('')
 
+    // Handles betting at start of game
     function handleBetClick(amount) {
         if((currentBet+amount) > chips){
             alert('Not enough money')
@@ -95,6 +97,8 @@ export default function BlackJack({ chips, setChips }) {
             setCurrentBet(prev => prev + amount)
         }
     }
+
+    // Checks that player inputted bet and starts the game on button click
     function handleLockIn() {
         if(currentBet > 0){
             setBetting(false)
@@ -104,6 +108,8 @@ export default function BlackJack({ chips, setChips }) {
             alert("Please Set your Bet greater than $0")
         }
     }
+
+    // Checks for player bust
     useEffect(() => {
         if(playerPoints > 21) {
             setGameOver(true)
@@ -111,6 +117,7 @@ export default function BlackJack({ chips, setChips }) {
         }
     }, [playerPoints])
     
+    // Resets all state variables to default and restarts game
     function handleRestartClick() {
         setBlackJack(false)
         setPlayerPoints(0)
@@ -123,18 +130,22 @@ export default function BlackJack({ chips, setChips }) {
         setGameOver(false)
         setBetting(true)
     }
+
     function handleQuitClick() {
         history.push('/game_room')
     }
+
     function handleHitClick(){
         setPlayerHand([...playerHand,
             PlayerDrawCard(deck)]
         )
     }
+
     function handleHoldClick() {
         setDealerTurn(true)
     }
-        
+    
+    // Adds two cards to both player and dealer hand at start of game
     function initialDraw() {
         setPlayerHand([...playerHand,
             PlayerDrawCard(deck),
@@ -156,6 +167,7 @@ export default function BlackJack({ chips, setChips }) {
         }
         return newCard
     }
+
     function DealerDrawCard(deck) {
         let copyOfDeck = [...deck]
         let newCard = copyOfDeck[Math.floor(Math.random() * (copyOfDeck.length))]
@@ -166,6 +178,8 @@ export default function BlackJack({ chips, setChips }) {
         }
         return newCard
     }
+
+    // Checks if either dealer or player got a black jack
     useEffect(() => {
         if(isInitialDraw === true && dealerHand.length > 0 && playerHand.length > 0){
             if(
@@ -197,6 +211,7 @@ export default function BlackJack({ chips, setChips }) {
         }
     }, [playerHand, dealerHand])
 
+    // Sets game's outcome based on result when game is over
     useEffect(() => {
         if(gameOver){
             if(playerPoints > 21) {
@@ -216,6 +231,7 @@ export default function BlackJack({ chips, setChips }) {
         }
     }, [gameOver])
 
+    // Dealer draws cards
     useEffect(() => {
         if(dealerTurn && dealerPoints >= 17) {
             setDealerTurn(false)
@@ -233,21 +249,21 @@ export default function BlackJack({ chips, setChips }) {
             <div className="black-jack" style={{textAlign: "center"}}>
                 <div>
                     <h1>Please Place Your Bet</h1>
-                    <button onClick={() => handleBetClick(5)}>$5</button>
-                    <button onClick={() => handleBetClick(10)}>$10</button>
-                    <button onClick={() => handleBetClick(50)}>$50</button>
-                    <button onClick={() => handleBetClick(100)}>$100</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(5)}>$5</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(10)}>$10</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(50)}>$50</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(100)}>$100</button>
                 </div>
                 <div>
-                    <button onClick={() => handleBetClick(-5)}>-$5</button>
-                    <button onClick={() => handleBetClick(-10)}>-$10</button>
-                    <button onClick={() => handleBetClick(-50)}>-$50</button>
-                    <button onClick={() => handleBetClick(-100)}>-$100</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-5)}>-$5</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-10)}>-$10</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-50)}>-$50</button>
+                    <button className="bet-btn" onClick={() => handleBetClick(-100)}>-$100</button>
                 </div>
                 <div>
                 <h1>Current Bet: ${currentBet}</h1>
                 <h2> Current Chips: ${chips}</h2>
-                <button onClick={() => handleLockIn()}>Lock In Bet</button>
+                <button className="lockin-btn" onClick={() => handleLockIn()}>Lock In Bet</button>
                 </div>
             </div>
         )
@@ -262,8 +278,8 @@ export default function BlackJack({ chips, setChips }) {
             <div>
                 <h2>{outCome}</h2>
                 <h2>Play Again?</h2>
-                <button onClick={() => handleRestartClick()}>Yes</button>
-                <button onClick={() => handleQuitClick()}>No</button>
+                <button className="bet-btn" onClick={() => handleRestartClick()}>Yes</button>
+                <button className="bet-btn" onClick={() => handleQuitClick()}>No</button>
             </div>)
             :
             null}

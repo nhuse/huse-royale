@@ -1,5 +1,4 @@
 import './styles/ProfileStyles.css'
-import Navbar from './Navbar';
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import ProfileComments from './ProfileComments';

@@ -13,11 +13,27 @@
     display: flex;
     flex-flow: column wrap;
     color: white;
+    align-content: center;
 }
 
 .review-li {
+    text-align: center;
     font-size: 20px;
     padding-bottom: 10px;
     max-width: 500px;
     word-wrap: break-word;
+    margin: 0px;
+}
+
+.comment-submit-btn {
+    font-size: 25px;
+}
+
+.comment-form-wrapper {
+    border-radius: 30px;
+    height: auto;
+    width: auto;
+    top: 10%;
+    background-color: grey;
+    text-align: center;
 }

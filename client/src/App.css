@@ -67,3 +67,11 @@
   font-size: 35px;
   border-radius: 10px;
 }
+
+.logo-img {
+  width: 500px;
+}
+
+.logo-img-flip {
+  width: 300px;
+}
