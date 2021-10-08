@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import Cards from './Cards';
 import { CardsImages } from './helpers/CardsImage'
+import Chatbox from '../Chatbox';
 
-export default function BlackJack({ chips, setChips }) {
+export default function BlackJack({ chips, setChips, user }) {
     const [Back, TwoOfClubs, TwoOfDiamonds, TwoOfHearts, TwoOfSpades,
         ThreeOfClubs, ThreeOfDiamonds, ThreeOfHearts, ThreeOfSpades,
         FourOfClubs, FourOfDiamonds, FourOfHearts, FourOfSpades,
@@ -74,6 +75,7 @@ export default function BlackJack({ chips, setChips }) {
         {name: 'Ace of Diamonds', value: 11, image: AceOfDiamonds}
     ]
 
+    const [roomName] = useState("Black Jack");
     const [blackJack, setBlackJack] = useState(false)
     const [playerHand, setPlayerHand] = useState([])
     const [dealerHand, setDealerHand] = useState([])
@@ -247,23 +249,30 @@ export default function BlackJack({ chips, setChips }) {
     if(betting) {
         return (
             <div className="black-jack" style={{textAlign: "center"}}>
-                <div>
-                    <h1>Please Place Your Bet</h1>
-                    <button className="bet-btn" onClick={() => handleBetClick(5)}>$5</button>
-                    <button className="bet-btn" onClick={() => handleBetClick(10)}>$10</button>
-                    <button className="bet-btn" onClick={() => handleBetClick(50)}>$50</button>
-                    <button className="bet-btn" onClick={() => handleBetClick(100)}>$100</button>
-                </div>
-                <div>
-                    <button className="bet-btn" onClick={() => handleBetClick(-5)}>-$5</button>
-                    <button className="bet-btn" onClick={() => handleBetClick(-10)}>-$10</button>
-                    <button className="bet-btn" onClick={() => handleBetClick(-50)}>-$50</button>
-                    <button className="bet-btn" onClick={() => handleBetClick(-100)}>-$100</button>
-                </div>
-                <div>
-                <h1>Current Bet: ${currentBet}</h1>
-                <h2> Current Chips: ${chips}</h2>
-                <button className="lockin-btn" onClick={() => handleLockIn()}>Lock In Bet</button>
+                <aside className="black-jack-aside">
+                    <div className="bj-chatbox">
+                        <Chatbox user={user} roomName={roomName} />
+                    </div>
+                </aside>
+                <div style={{ float: "right", width: "83vw" }}>
+                    <div>
+                        <h1>Please Place Your Bet</h1>
+                        <button className="bet-btn" onClick={() => handleBetClick(5)}>$5</button>
+                        <button className="bet-btn" onClick={() => handleBetClick(10)}>$10</button>
+                        <button className="bet-btn" onClick={() => handleBetClick(50)}>$50</button>
+                        <button className="bet-btn" onClick={() => handleBetClick(100)}>$100</button>
+                    </div>
+                    <div>
+                        <button className="bet-btn" onClick={() => handleBetClick(-5)}>-$5</button>
+                        <button className="bet-btn" onClick={() => handleBetClick(-10)}>-$10</button>
+                        <button className="bet-btn" onClick={() => handleBetClick(-50)}>-$50</button>
+                        <button className="bet-btn" onClick={() => handleBetClick(-100)}>-$100</button>
+                    </div>
+                    <div>
+                        <h1>Current Bet: ${currentBet}</h1>
+                        <h2> Current Chips: ${chips}</h2>
+                        <button className="lockin-btn" onClick={() => handleLockIn()}>Lock In Bet</button>
+                    </div>
                 </div>
             </div>
         )
@@ -273,6 +282,9 @@ export default function BlackJack({ chips, setChips }) {
             <aside className="black-jack-aside">
                 <h1>Chips: ${chips}</h1>
                 <h1>Bet: ${currentBet}</h1>
+                <div className="bj-chatbox">
+                    <Chatbox user={user} roomName={roomName} />
+                </div>
             </aside>
             {gameOver || blackJack ? (
             <div>

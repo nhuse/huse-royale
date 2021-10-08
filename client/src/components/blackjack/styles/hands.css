@@ -20,8 +20,7 @@
 
 .black-jack-aside {
     float: left;
-    width: 200px;
-    height: 92vh;
+    height: 92vh
 }
 
 .action {
@@ -51,4 +50,32 @@
     margin: 5px;
     width: 150px;
     border-radius: 20px;
+}
+
+.bj-chatbox {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-color: black;
+    font-size: 12px;
+    float: left;
+    width: 15vw;
+    margin: 5px 0px 0px 5px;
+}
+
+.message-list {
+    padding: 0px;
+    text-align: center;
+    margin: 0px
+}
+
+.message-li {
+    background-color: rgba(28, 16, 200, 0.1);
+    padding: 0px;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+}
+
+.chatbox-username {
+    font-size: 12px;
 }

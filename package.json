@@ -1,16 +1,36 @@
 {
-    "name": "huse-royale",
-    "description": "Nathan Huse's Flatiron Capstone Project",
-    "engines": {
-        "node": ">= 14"
-    },
-    "scripts": {
-        "build": "npm install --prefix client && npm run build --prefix client",
-        "clean": "rm -rf public",
-        "deploy": "cp -a client/build/. public/",
-        "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
-    },
-    "dependencies": {
-        "react-custom-roulette": "^1.1.8"
-    }
+  "name": "huse-royale",
+  "description": "Nathan Huse's Flatiron Capstone Project",
+  "engines": {
+    "node": ">= 14"
+  },
+  "scripts": {
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "clean": "rm -rf public",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "react-custom-roulette": "^1.1.8",
+    "socket.io": "^4.2.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhuse/huse-royale.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhuse/huse-royale/issues"
+  },
+  "homepage": "https://github.com/nhuse/huse-royale#readme"
 }

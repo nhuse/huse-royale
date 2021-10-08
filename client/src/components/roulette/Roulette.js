@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { Wheel } from "./components/Wheel"
+import Chatbox from '../Chatbox';
 
 const data = [
     { option: '0', style: { backgroundColor: 'green', textColor: "white" }},
@@ -45,8 +46,9 @@ const data = [
     { option: '39', style: { backgroundColor: 'red', textColor: "white" }},
     { option: '40', style: { backgroundColor: 'black', textColor: "white" }},
 ]
-function Roulette({ chips, setChips }) {
+function Roulette({ chips, setChips, user }) {
     const history = useHistory()
+    const roomName = "Roulette"
     const [mustSpin, setMustSpin] = useState(false)
     const [gameOver, setGameOver] = useState(false)
     const [betting, setBetting] = useState(true)
@@ -108,8 +110,13 @@ function Roulette({ chips, setChips }) {
 
     return (
     <div style={{ textAlign: "center" }}>
+        <aside className="black-jack-aside">
+            <div className="bj-chatbox">
+                <Chatbox user={user} roomName={roomName} />
+            </div>
+        </aside>
             {gameOver ? 
-                <div style={{ textAlign: "center" }}>
+                <div style={{ textAlign: "center", width: "83vw", float: "right" }}>
                     <h2>{outcome}</h2>
                     <h2>Play Again?</h2>
                     <button className="bet-btn" onClick={() => handleRestartClick()}>Yes</button>
@@ -117,7 +124,7 @@ function Roulette({ chips, setChips }) {
                 </div>
                 :
                 null}
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center", width: "83vw" }}>
             <Wheel 
                 mustStartSpinning={mustSpin}
                 prizeNumber={prizeNumber}
@@ -135,15 +142,15 @@ function Roulette({ chips, setChips }) {
                 }}
             />
         </div>
-        <div>
+        <div style={{ width: "84vw", float: "right" }}>
             {!gameOver && !betting ?
             <button onClick={handleSpinClick} className="action-btn" >Spin!</button>
             :
-            <div style={{ height: '25px' }} /> }
+            null}
             
         </div>
         { betting && !gameOver ? (
-            <div className="roulette" style={{ textAlign: "center" }}>
+            <div className="roulette" style={{ textAlign: "center", width: "84vw", float: "right" }}>
                 <div>
                     <h2 style={{ marginBottom: "10px" }}>Please Place Your Bet</h2>
                     <button className="bet-btn" onClick={() => handleBetClick(5)}>$5</button>
